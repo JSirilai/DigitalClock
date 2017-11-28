@@ -18,9 +18,7 @@ architecture Behavioral of T_FlipFlop is
 
 begin
 	process (Ck, Reset, Preset) begin
-	if R_button = '0' then
-		temp <= '0';
-	elsif Reset = '1' then
+	if Reset = '1' then
 		temp <= '0';
 	elsif rising_edge(Ck) then
 		temp <= T xor temp;
