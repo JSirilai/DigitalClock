@@ -48,11 +48,11 @@ architecture Behavioral of CounterController is
 	signal Temp1, temp2, temp3, temp4 : STD_LOGIC;
 
 begin
-	forthDigit : CounterZtoNine
+	forthDigit : CounterZtoNine		-- 4th digit
 	port map(BitCode => M2_digit, CK_in => AccuSignal, Set => Set_M, Next_up => temp1, R => Reset);
-	thirdDigit : CounterZtoFive
+	thirdDigit : CounterZtoFive		--3rd digit
 	port map(BitCode => M1_digit, Next_up => temp2, CK_in => temp1, Set => '0', R => Reset);
-	firstAndsecondDigit : CounterZtoTwefour
+	firstAndsecondDigit : CounterZtoTwefour	--1st and 2nd digit
 	port map(BitCode => H_digit, Next_up => temp3, CK_in => temp2, Set => Set_H, R => Reset);
 
 end Behavioral;
