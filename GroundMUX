@@ -13,10 +13,10 @@ architecture Behavioral of GroundMUX is
 begin
 	process (Selector) begin
 	case Selector is
-		when "00" => ground_connect <= "1000";
-		when "01" => ground_connect <= "0100";
-		when "10" => ground_connect <= "0010";
-		when "11" => ground_connect <= "0001";
+		when "00" => ground_connect <= "1000";		-- 1st digit active
+		when "01" => ground_connect <= "0100";		-- 2nd digit active
+		when "10" => ground_connect <= "0010";		-- 3rd digit active
+		when "11" => ground_connect <= "0001";		-- 4th digit active
 	end case;
 end process;
 
