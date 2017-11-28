@@ -17,10 +17,10 @@ architecture Behavioral of MUX is
 begin
 	process (Selector, input_MUX_0, input_MUX_1, input_MUX_2, input_MUX_3) begin
 	case Selector is
-		when "00" => output_MUX <= input_MUX_0;
-		when "01" => output_MUX <= input_MUX_1;
-		when "10" => output_MUX <= input_MUX_2;
-		when "11" => output_MUX <= input_MUX_3;
+		when "00" => output_MUX <= input_MUX_0;		-- first loop active
+		when "01" => output_MUX <= input_MUX_1;		-- second loop active
+		when "10" => output_MUX <= input_MUX_2;		-- third loop active
+		when "11" => output_MUX <= input_MUX_3;		-- forth loop active
 		when others => output_MUX <= '1';
 	end case;
 end process;
