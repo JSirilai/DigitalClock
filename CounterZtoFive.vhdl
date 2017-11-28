@@ -29,7 +29,7 @@ begin
 	BitCode(2) <= C;
 	BitCode(3) <= '0';
 	BitCode(4) <= '0';
-	tempNext <= (C and D);
+	tempNext <= (C and D); --when finish loop C and D activate next loop
 	Next_up <= tempNext;
 	RS <= tempNext;
 
