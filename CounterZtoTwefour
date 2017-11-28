@@ -1,0 +1,55 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity CounterZtoTwefour is
+    Port ( BitCode : out STD_LOGIC_VECTOR (4 downto 0);
+           Next_up : out STD_LOGIC;
+           CK_in : in STD_LOGIC;
+           R : in STD_LOGIC;
+           set : in STD_LOGIC);
+end CounterZtoTwefour;
+
+architecture Behavioral of CounterZtoTwefour is
+
+component T_FlipFlop is
+        Port ( Ck : in STD_LOGIC;
+       T : in STD_LOGIC;
+       Reset : in STD_LOGIC;
+       Preset : in STD_LOGIC;
+       Q : out STD_LOGIC);
+end component;
+
+signal A, A_inv, B, B_inv, C, C_inv, D, D_inv, E, E_inv, RS, tempNext : STD_LOGIC;
+
+begin
+
+BitCode(0) <= E;
+BitCode(1) <= D;
+BitCode(2) <= C;
+BitCode(3) <= B;
+BitCode(4) <= A;
+tempNext <= (A and B);
+Next_up <= tempNext;
+RS <= tempNext;
+
+T_04: T_FlipFlop
+port map(Ck => CK_in,T => '1' ,Reset => RS,Q => E,Preset => set);
+E_inv <= not E;
+
+T_03: T_FlipFlop
+port map(Ck => E_inv, T => '1' ,Reset => RS,Q => D,Preset => '0');
+D_inv <= not D;
+
+T_02: T_FlipFlop
+port map(Ck => D_inv, T => '1',Reset => RS,Q => C,Preset => '0');
+C_inv <= not C;
+
+T_01: T_FlipFlop
+port map(Ck => C_inv, T => '1',Reset => RS,Q => B, Preset => '0');
+B_inv <= not B;
+
+T_00: T_FlipFlop
+port map(Ck => B_inv, T => '1',Reset => RS,Q => A, Preset => '0');
+A_inv <= not A;
+
+end Behavioral;
