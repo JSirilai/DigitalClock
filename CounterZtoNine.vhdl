@@ -30,7 +30,7 @@ begin
 	BitCode(3) <= B;
 	BitCode(4) <= '0';
 	tempNext <= (B and D);
-	Next_up <= tempNext;
+	Next_up <= tempNext;		--when finish loop C and D activate next loop
 	RS <= tempNext;
 	T_04 : T_FlipFlop
 	port map(Ck => CK_in, T => '1', Reset => RS, Q => E, Preset => SET);
