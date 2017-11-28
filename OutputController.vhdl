@@ -55,7 +55,7 @@ begin
 	MUX_6 : MUX
 	port map(Selector => select_digit, input_MUX_0 => input_7_segment_0(6), input_MUX_1 => input_7_segment_1(6), input_MUX_2 => input_7_segment_2(6), input_MUX_3 => input_7_segment_3(6), output_MUX => output_7_segment(6));
  
-	State_machine : process(present_state) begin
+	State_machine : process(present_state) begin		-- Control 7 segment 
 		case present_state is
 			when S0 => 
 				select_digit <= "00";
@@ -72,7 +72,7 @@ begin
 		end case;
 	end process state_machine;
 	
-	SelectDigit : process (Select_digit, ck) begin
+	SelectDigit : process (Select_digit, ck) begin		-- run state machine
 		if rising_edge(Ck) then
 			present_state <= next_state;
 		end if;
