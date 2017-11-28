@@ -1,0 +1,23 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity GroundMUX is
+	port (
+		Selector : in STD_LOGIC_VECTOR (1 downto 0);
+		ground_connect : out STD_LOGIC_VECTOR (3 downto 0)
+	);
+end GroundMUX;
+
+architecture Behavioral of GroundMUX is
+
+begin
+	process (Selector) begin
+	case Selector is
+		when "00" => ground_connect <= "1000";
+		when "01" => ground_connect <= "0100";
+		when "10" => ground_connect <= "0010";
+		when "11" => ground_connect <= "0001";
+	end case;
+end process;
+
+end Behavioral;
